@@ -44,9 +44,10 @@ post '/urls' do
 end
 
 get '/:short_url' do
-	puts "++++++++++++++++++++++"
 	s_url = params[:short_url]
 	url = Url.find_by(short_url: s_url)
-	redirect "#{url.long_url}"
-	
+	url.click_count += 1
+	url.save
+	puts "++++ current click_count is #{url.click_count}"
+	redirect "#{url.long_url}"	
 end
