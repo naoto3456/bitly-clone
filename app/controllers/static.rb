@@ -38,7 +38,10 @@ end
 post '/urls' do
 	url = Url.new(long_url:params[:long_url])
 	if url.save
-		redirect "/#{url.short_url}"
+		#redirect "/#{url.short_url}"
+		@current_url = url
+		@urls = Url.all
+		erb :"static/index"
 	else
 		@error = url.errors.full_messages.first
 		puts @error

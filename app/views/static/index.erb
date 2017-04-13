@@ -1,4 +1,4 @@
-<h1>Hello World</h1>
+<h1>Bitly</h1>
 <!-- <p>See Me in views/static/index.html.erb</p>
 <a href="/about">Click here to got to about page</a>
 <a href="/signup">sign up page</a>
@@ -6,13 +6,33 @@
 
 <form action="/urls" method="post">
 	LONG URL:<br>
-	<input type="text" name="long_url">
+
+	<input type="text" name="long_url" placeholder="paste a link shorten it">
 	<input type="submit" name="Submit"><br>
-	<p style = "color:red"><%= @error %></p>
+	<p id="error_message"><%= @error %></p>
 </form>
 
+<% if @current_url != nil %>
+	<p><%= @current_url.long_url %></p>
+	<a href="<%= @current_url.short_url %>">http://localhost:9393/<%= @current_url.short_url %></a>
+<% end %>
+<br>
+
+<!-- <table border="0">
+  <tr><td></td><td></td><td></td></tr>
+  <tr><td></td><td></td><td></td></tr>
+</table>
+ -->
+<h2>all lists</h2>
 <% if @urls != nil %>
+  <table border="1">
+  <tr><th>short url</th><th>long url</th><th>click count</th></tr>
 	<% @urls.each { |url| %>
- 		<a href="<%=url.short_url%>">http://localhost:9393/<%= url.short_url %> (<%= url.long_url %>)</a> : <%=url.click_count %> clicks<br>
+ 		<tr>
+ 			<td><a href="<%=url.short_url%>">http://localhost:9393/<%= url.short_url %> </a></td>
+ 			<td><a href="<%=url.long_url%>">http://localhost:9393/<%= url.long_url %> </a></td>
+ 			<td><%=url.click_count %></td>
+ 		</tr>
 	<% } %>
+	</table>
 <% end %>
