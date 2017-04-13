@@ -1,4 +1,7 @@
 get '/' do
+
+  @urls = Url.all
+
   erb :"static/index"
 end
 
@@ -24,7 +27,7 @@ post '/create_user' do
 end
 
 #lsof -i :9393
-#kill -(pid) 
+#kill -9 (pid) 
 
 get '/users/profile/:id' do
 	id = params[:id]
@@ -34,12 +37,13 @@ end
 
 post '/urls' do
 	url = Url.new(long_url:params[:long_url])
-	#url.shorten
-
 	if url.save
 		redirect "/#{url.short_url}"
 	else
-		render "/"
+		@error = url.errors.full_messages.first
+		puts @error
+		@urls = Url.all
+		erb :"static/index"
 	end
 end
 

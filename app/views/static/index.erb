@@ -5,7 +5,14 @@
  -->
 
 <form action="/urls" method="post">
-	Original URL:<br>
+	LONG URL:<br>
 	<input type="text" name="long_url">
-	<input type="submit" name="Submit">
+	<input type="submit" name="Submit"><br>
+	<p style = "color:red"><%= @error %></p>
 </form>
+
+<% if @urls != nil %>
+	<% @urls.each { |url| %>
+ 		<a href="<%=url.short_url%>">http://localhost:9393/<%= url.short_url %> (<%= url.long_url %>)</a> : <%=url.click_count %> clicks<br>
+	<% } %>
+<% end %>
