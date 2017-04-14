@@ -1,10 +1,21 @@
+<!-- <div>
+	<nav class="navigation">
+		<ul>
+			<li><a href="www.google.com">TOUR</a></li>
+			<li><a href="www.google.com">ENTERPRISE</a></li>
+			<li><a href="www.google.com">RESOURCE</a></li>				
+		</ul>
+	</nav>
+ -->
+
 <h1>Bitly</h1>
 <!-- <p>See Me in views/static/index.html.erb</p>
 <a href="/about">Click here to got to about page</a>
 <a href="/signup">sign up page</a>
  -->
 
-<form action="/urls" method="post">
+
+<form id="url_form", action="/urls" method="post">
 	LONG URL:<br>
 
 	<input type="text" name="long_url" placeholder="paste a link shorten it">
@@ -18,12 +29,9 @@
 <% end %>
 <br>
 
-<!-- <table border="0">
-  <tr><td></td><td></td><td></td></tr>
-  <tr><td></td><td></td><td></td></tr>
-</table>
- -->
 <h2>all lists</h2>
+
+<div id='flash'>
 <% if @urls != nil %>
   <table border="1">
   <tr><th>short url</th><th>long url</th><th>click count</th></tr>
@@ -36,3 +44,4 @@
 	<% } %>
 	</table>
 <% end %>
+</div>

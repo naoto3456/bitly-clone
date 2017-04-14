@@ -6,3 +6,11 @@ th {
 	color: red;
 }
 
+.navigation ul {
+	list-style: none;
+	list-style-type: none;
+	list-style-position: initial;
+	list-style-image: initial;
+	position: relative; 
+}
+
