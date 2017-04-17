@@ -1,0 +1,12 @@
+<% if @urls != nil %>
+  <table border="1" >
+  <tr><th>short url</th><th>long url</th><th>click count</th></tr>
+	<% @urls.each { |url| %>
+ 		<tr>
+ 			<td><a href="<%=url.short_url%>"><%= url.short_url %> </a></td>
+ 			<td><a href="<%=url.long_url%>"><%= url.long_url %> </a></td>
+ 			<td><%=url.click_count %></td>
+ 		</tr>
+	<% } %>
+	</table>
+<% end %>

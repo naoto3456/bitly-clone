@@ -1,6 +1,6 @@
 get '/' do
 
-  @urls = Url.all
+  @urls = Url.all.order("id DESC")
 
   erb :"static/index"
 end
@@ -38,15 +38,16 @@ end
 post '/urls' do
 	url = Url.new(long_url:params[:long_url])
 	if url.save
-		#redirect "/#{url.short_url}"
-		@current_url = url
-		@urls = Url.all
-		erb :"static/index"
+		return @current_url = url.to_json
+	#	@urls = Url.all
+	#	erb :"static/index", layout:false
 	else
-		@error = url.errors.full_messages.first
-		puts @error
-		@urls = Url.all
-		erb :"static/index"
+		status 400
+		return  @url.errors.full_messages.first
+		# @error = url.errors.full_messages.first
+		# puts @error
+		# @urls = Url.all
+		# erb :"static/index"
 	end
 end
 

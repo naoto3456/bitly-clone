@@ -29,6 +29,7 @@ group :development, :test do
 	# Adding shotgun for local web hosting
 	gem 'shotgun'
 	gem 'byebug'
+	gem 'CSV'
 end
 
 group :production do
